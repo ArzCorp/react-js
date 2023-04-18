@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react'
-import { EMPTY_STRING, FALSE, TRUE } from '../utils/constants'
+import { Fragment, useEffect, useState } from 'react'
+import { EMPTY_STRING, FALSE, PRODUCTS, TRUE } from '../utils/constants'
 import { getRandomCatImageApi, getRandomFactApi } from '../utils/api'
 import { getFirstWord } from '../utils/getFirstWord'
+import ProductList from '../components/ProductList'
+import Header from '../components/Header'
 
 export default function Home() {
 	const [loading, setLoading] = useState(FALSE)
@@ -20,26 +22,9 @@ export default function Home() {
 	}, [])
 
 	return (
-		<main>
-			<h1>Generate random cat with word</h1>
-			<button onClick={getRandomCatImage}>Generate image</button>
-			<p
-				style={{
-					display: loading ? 'block' : 'none',
-				}}
-			>
-				Cargando...
-			</p>
-			<img
-				onLoad={() => {
-					setLoading(false)
-				}}
-				style={{
-					display: loading ? 'none' : 'block',
-				}}
-				src={catImage}
-				alt="random cat image generated"
-			/>
-		</main>
+		<Fragment>
+			<Header />
+			<ProductList />
+		</Fragment>
 	)
 }
